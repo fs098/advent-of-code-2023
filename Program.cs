@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using static AdventOfCode.Day01;
+using static AdventOfCode.Day02;
 
 int day = Day;
 

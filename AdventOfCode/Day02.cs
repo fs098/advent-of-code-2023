@@ -6,7 +6,7 @@ public static class Day02
     public static string Part1(string filename)
     {
         int idCount = 0;
-        List<Game> games = GetInput(filename);
+        List<Game> games = ParseInput(filename);
         foreach (Game game in games)
         {
             if (game.IsPossible()) idCount += game.Id;
@@ -17,7 +17,7 @@ public static class Day02
     public static string Part2(string filename)
     {   
         int result = 0;
-        List<Game> games = GetInput(filename);
+        List<Game> games = ParseInput(filename);
         foreach (Game game in games)
         {
             result += game.Power;
@@ -25,18 +25,18 @@ public static class Day02
         return result.ToString();
     }
 
-    private static List<Game> GetInput(string filename)
+    private static List<Game> ParseInput(string filename)
     {
         string[] lines = File.ReadAllLines(filename);
         List<Game> result = new(lines.Length);
         foreach (string line in lines)
         {
-            result.Add(MakeGame(line));
+            result.Add(ParseLine(line));
         }
         return result;
     }
 
-    private static Game MakeGame(string line)
+    private static Game ParseLine(string line)
     {
         // Example line: "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green";
         string[] numberAndSets = line.Split(':');

@@ -24,4 +24,30 @@ public static class Utils
         }
         return result.ToString();
     }
+
+    // https://en.wikipedia.org/wiki/Euclidean_algorithm#Implementations
+    public static long GCD(long a, long b)
+    {
+        while (b is not 0)
+        {
+            long temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+
+    // https://en.wikipedia.org/wiki/Least_common_multiple#Using_the_greatest_common_divisor
+    public static long LCM(long a, long b)  => Math.Abs(a) * (Math.Abs(b) / GCD(a, b));
+
+    public static long LCM(List<int> numbers)
+    {
+        if (numbers.Count == 0) return 0;
+        long result = numbers.First();
+        foreach (int number in numbers[1..])
+        {
+            result = LCM(result, number);
+        }
+        return result;
+    }
 }
